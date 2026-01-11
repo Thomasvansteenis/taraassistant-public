@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  tara-assistant:
+    image: ghcr.io/tarahome/taraassistant:latest
+    # Or build locally: build: .
+    container_name: tara-assistant
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist encrypted credentials and entity cache
+      - ./data:/app/data
+      # Optional: custom scripts
+      - ./scripts.yaml:/app/scripts.yaml:ro
+    environment:
+      - TZ=${TZ:-America/New_York}
+    networks:
+      - ha-network
+
+  # Optional: Local Ollama for FREE AI (no API keys needed!)
+  # Uncomment if you want to use local AI instead of OpenAI/Anthropic
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: home-ai-ollama
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   networks:
+  #     - ha-network
+  #   expose:
+  #     - "11434"
+  #   # For GPU support, uncomment:
+  #   # deploy:
+  #   #   resources:
+  #   #     reservations:
+  #   #       devices:
+  #   #         - driver: nvidia
+  #   #           count: 1
+  #   #           capabilities: [gpu]
+
+volumes:
+  ollama_data:
+
+networks:
+  ha-network:
+    driver: bridge
