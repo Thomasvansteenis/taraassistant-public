@@ -1,0 +1,328 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Typography */
+  --font-size: 16px;
+  --font-primary: 'Outfit', system-ui, sans-serif;
+  --font-secondary: 'DM Sans', system-ui, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Warm Pastel Colors - Light Mode */
+  --background: #fdfbf7;
+  --foreground: #4a4137;
+  
+  /* Primary - Warm Coral */
+  --primary: #ff9b85;
+  --primary-light: #ffb5a3;
+  --primary-dark: #f48171;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary - Soft Lavender */
+  --secondary: #d4c5f9;
+  --secondary-light: #e5dcfc;
+  --secondary-dark: #c0afe6;
+  --secondary-foreground: #4a4137;
+  
+  /* Accent - Soft Mint */
+  --accent: #b8e6d5;
+  --accent-light: #d1f0e3;
+  --accent-dark: #a0d8c4;
+  --accent-foreground: #4a4137;
+  
+  /* Info - Soft Sky Blue */
+  --info: #a7d7f0;
+  --info-light: #c5e6f7;
+  --info-dark: #8fc7e3;
+  --info-foreground: #4a4137;
+  
+  /* Warning - Soft Peach */
+  --warning: #ffd89b;
+  --warning-light: #ffe6b8;
+  --warning-dark: #ffca7f;
+  --warning-foreground: #4a4137;
+  
+  /* Error - Soft Rose */
+  --error: #ffb3ba;
+  --error-light: #ffd1d5;
+  --error-dark: #ff9ba4;
+  --error-foreground: #4a4137;
+  
+  /* Success - Soft Sage */
+  --success: #c7e8b5;
+  --success-light: #dcf1cd;
+  --success-dark: #b5dd9f;
+  --success-foreground: #4a4137;
+  
+  /* Neutrals */
+  --muted: #f5f2ed;
+  --muted-foreground: #8a8378;
+  --card: #ffffff;
+  --card-foreground: #4a4137;
+  --popover: #ffffff;
+  --popover-foreground: #4a4137;
+  --border: #e8e4dc;
+  --input: transparent;
+  --input-background: #faf8f4;
+  --ring: #ff9b85;
+  
+  /* Destructive (same as error for consistency) */
+  --destructive: #ffb3ba;
+  --destructive-foreground: #4a4137;
+  
+  /* Charts - Warm pastels */
+  --chart-1: #ff9b85;
+  --chart-2: #d4c5f9;
+  --chart-3: #b8e6d5;
+  --chart-4: #a7d7f0;
+  --chart-5: #ffd89b;
+  
+  /* Radius tokens */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius: 1rem;
+  
+  /* Spacing tokens */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Shadow tokens - soft and subtle */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 8px 0 rgb(0 0 0 / 0.05), 0 2px 4px 0 rgb(0 0 0 / 0.03);
+  --shadow-lg: 0 8px 16px 0 rgb(0 0 0 / 0.06), 0 4px 8px 0 rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 16px 32px 0 rgb(0 0 0 / 0.08), 0 8px 16px 0 rgb(0 0 0 / 0.05);
+  
+  /* Sidebar */
+  --sidebar: #fdfbf7;
+  --sidebar-foreground: #4a4137;
+  --sidebar-primary: #ff9b85;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f2ed;
+  --sidebar-accent-foreground: #4a4137;
+  --sidebar-border: #e8e4dc;
+  --sidebar-ring: #ff9b85;
+  
+  /* Switch */
+  --switch-background: #e8e4dc;
+}
+
+.dark {
+  /* Dark mode - warm, cozy night theme */
+  --background: #2a2520;
+  --foreground: #f5f2ed;
+  
+  --primary: #ff9b85;
+  --primary-light: #ffb5a3;
+  --primary-dark: #f48171;
+  --primary-foreground: #2a2520;
+  
+  --secondary: #b8a8e8;
+  --secondary-light: #c9bced;
+  --secondary-dark: #a594d8;
+  --secondary-foreground: #f5f2ed;
+  
+  --accent: #92cdb8;
+  --accent-light: #a7d9c7;
+  --accent-dark: #7db9a5;
+  --accent-foreground: #2a2520;
+  
+  --info: #8fc7e3;
+  --info-light: #a7d7f0;
+  --info-dark: #7ab5d3;
+  --info-foreground: #2a2520;
+  
+  --warning: #ffca7f;
+  --warning-light: #ffd89b;
+  --warning-dark: #ffbc66;
+  --warning-foreground: #2a2520;
+  
+  --error: #ff9ba4;
+  --error-light: #ffb3ba;
+  --error-dark: #ff8591;
+  --error-foreground: #2a2520;
+  
+  --success: #b5dd9f;
+  --success-light: #c7e8b5;
+  --success-dark: #a3cf8b;
+  --success-foreground: #2a2520;
+  
+  --muted: #3d3832;
+  --muted-foreground: #a69d92;
+  --card: #33302b;
+  --card-foreground: #f5f2ed;
+  --popover: #33302b;
+  --popover-foreground: #f5f2ed;
+  --border: #4a453f;
+  --input: transparent;
+  --input-background: #3d3832;
+  --ring: #ff9b85;
+  
+  --destructive: #ff9ba4;
+  --destructive-foreground: #2a2520;
+  
+  --chart-1: #ff9b85;
+  --chart-2: #b8a8e8;
+  --chart-3: #92cdb8;
+  --chart-4: #8fc7e3;
+  --chart-5: #ffca7f;
+  
+  --sidebar: #2a2520;
+  --sidebar-foreground: #f5f2ed;
+  --sidebar-primary: #ff9b85;
+  --sidebar-primary-foreground: #2a2520;
+  --sidebar-accent: #3d3832;
+  --sidebar-accent-foreground: #f5f2ed;
+  --sidebar-border: #4a453f;
+  --sidebar-ring: #ff9b85;
+  
+  --switch-background: #4a453f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-info: var(--info);
+  --color-info-light: var(--info-light);
+  --color-info-dark: var(--info-dark);
+  --color-info-foreground: var(--info-foreground);
+  --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
+  --color-warning-dark: var(--warning-dark);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-light: var(--error-light);
+  --color-error-dark: var(--error-dark);
+  --color-error-foreground: var(--error-foreground);
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-success-dark: var(--success-dark);
+  --color-success-foreground: var(--success-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-secondary);
+  }
+
+  /**
+  * Default typography styles for HTML elements
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.6;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-family: var(--font-secondary);
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input, textarea {
+    font-family: var(--font-secondary);
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}

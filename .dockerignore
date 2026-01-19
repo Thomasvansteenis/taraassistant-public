@@ -1,0 +1,55 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+ENV/
+env/
+.eggs/
+*.egg-info/
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+data/
+*.enc
+.env
+.env.*
+!.env.example
+
+# Documentation
+*.md
+!README.md
+
+# N8N workflow (not needed in container)
+*.json
+!package.json
+
+# Website UI (separate build)
+Website UI/
+
+# Test files
+tests/
+*.test.py
+pytest.ini
+
+# Build artifacts
+dist/
+build/
