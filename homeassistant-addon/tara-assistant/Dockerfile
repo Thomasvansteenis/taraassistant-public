@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     py3-pip \
     python3-dev \
     curl \
+    jq \
     gcc \
     musl-dev \
     libffi-dev \
