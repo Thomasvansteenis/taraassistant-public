@@ -32,6 +32,11 @@ class IngressMiddleware(BaseHTTPMiddleware):
     )
 
     async def dispatch(self, request: Request, call_next):
+        # Normalize double slashes (HA Ingress can produce // at the root)
+        path = request.scope.get("path", "/")
+        if "//" in path:
+            request.scope["path"] = re.sub(r"/+", "/", path)
+
         ingress_path = request.headers.get("X-Ingress-Path", "").rstrip("/")
 
         response = await call_next(request)

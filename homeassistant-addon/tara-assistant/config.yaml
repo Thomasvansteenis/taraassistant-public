@@ -1,5 +1,5 @@
 name: Tara Assistant
-version: 1.0.4
+version: 1.0.5
 slug: tara_assistant
 description: AI-powered Home Assistant automation assistant that learns your routines and suggests automations
 url: https://github.com/TaraHome/taraassistant-public
@@ -27,6 +27,7 @@ map:
 watchdog: http://[HOST]:[PORT:8000]/health
 stage: experimental
 options:
+  ha_token: ""
   ai_provider: openai
   openai_api_key: ""
   openai_model: gpt-4o
@@ -43,6 +44,7 @@ options:
   max_tokens_per_response: 4096
   requests_per_minute: 20
 schema:
+  ha_token: password
   ai_provider: list(openai|anthropic|ollama|google|openai_compatible)
   openai_api_key: str?
   openai_model: str?
