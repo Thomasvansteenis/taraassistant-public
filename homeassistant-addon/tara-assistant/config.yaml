@@ -1,5 +1,5 @@
 name: Tara Assistant
-version: 1.0.2
+version: 1.0.3
 slug: tara_assistant
 description: AI-powered Home Assistant automation assistant that learns your routines and suggests automations
 url: https://github.com/TaraHome/taraassistant-public
@@ -9,8 +9,8 @@ arch:
   - armv7
 startup: application
 boot: auto
-init: false
 homeassistant_api: true
+hassio_api: true
 ingress: true
 ingress_port: 8000
 ingress_entry: /
