@@ -9,10 +9,17 @@ from app.setup.encryption import EncryptionManager
 from app.setup.models import StoredConfig
 
 
+def _get_data_dir() -> Path:
+    """Return the data directory, respecting add-on mode."""
+    from app.config import is_addon_mode
+    if is_addon_mode():
+        return Path("/data/app_data")
+    return Path("data")
+
+
 class ConfigStorage:
     """Encrypted configuration file storage."""
 
-    CONFIG_DIR = Path("data")
     CONFIG_FILE = "config.enc"
 
     def __init__(self, passphrase: Optional[str] = None):
@@ -23,6 +30,7 @@ class ConfigStorage:
                        If not provided, uses machine identifier.
         """
         self.encryption = EncryptionManager(passphrase)
+        self.CONFIG_DIR = _get_data_dir()
         self.config_path = self.CONFIG_DIR / self.CONFIG_FILE
 
     def exists(self) -> bool:

@@ -1,7 +1,14 @@
 """Configuration settings using Pydantic with encrypted storage support."""
+import os
+
 from pydantic_settings import BaseSettings
 from pydantic import Field
 from typing import Literal, Optional
+
+
+def is_addon_mode() -> bool:
+    """Check if running as a Home Assistant add-on."""
+    return bool(os.environ.get("SUPERVISOR_TOKEN")) or os.environ.get("HASSIO_ADDON") == "true"
 
 
 class Settings(BaseSettings):
@@ -62,7 +69,11 @@ def clear_settings_cache() -> None:
 
 
 def is_configured() -> bool:
-    """Check if application has been configured via setup wizard."""
+    """Check if application has been configured via setup wizard or add-on options."""
+    if is_addon_mode():
+        # In add-on mode, config comes from HA options UI / environment variables.
+        # Consider configured if SUPERVISOR_TOKEN is set (HA connection available).
+        return True
     from app.setup.storage import ConfigStorage
     storage = ConfigStorage()
     return storage.exists()
@@ -78,6 +89,16 @@ def get_settings() -> Settings:
     global _settings_cache
 
     if _settings_cache is not None:
+        return _settings_cache
+
+    # In add-on mode, load from environment variables set by run.sh
+    if is_addon_mode():
+        ha_url = os.environ.get("HA_URL", "http://supervisor/core")
+        ha_token = os.environ.get("HA_TOKEN") or os.environ.get("SUPERVISOR_TOKEN", "")
+        _settings_cache = Settings(
+            ha_url=ha_url,
+            ha_token=ha_token,
+        )
         return _settings_cache
 
     # Try to load from encrypted storage first

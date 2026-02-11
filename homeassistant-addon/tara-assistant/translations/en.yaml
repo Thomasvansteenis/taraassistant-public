@@ -1,0 +1,48 @@
+configuration:
+  ai_provider:
+    name: AI Provider
+    description: Choose your AI provider for generating automation suggestions
+  openai_api_key:
+    name: OpenAI API Key
+    description: Your OpenAI API key (required when using OpenAI provider)
+  openai_model:
+    name: OpenAI Model
+    description: OpenAI model to use (e.g. gpt-4o, gpt-4o-mini)
+  anthropic_api_key:
+    name: Anthropic API Key
+    description: Your Anthropic API key (required when using Anthropic provider)
+  anthropic_model:
+    name: Anthropic Model
+    description: Anthropic model to use (e.g. claude-sonnet-4-20250514)
+  ollama_host:
+    name: Ollama Host
+    description: URL for your Ollama instance (e.g. http://localhost:11434)
+  ollama_model:
+    name: Ollama Model
+    description: Local Ollama model to use (e.g. llama3.1)
+  google_api_key:
+    name: Google API Key
+    description: Your Google Gemini API key (required when using Google provider)
+  google_model:
+    name: Google Model
+    description: Google model to use (e.g. gemini-2.0-flash-exp)
+  openai_compatible_host:
+    name: OpenAI-Compatible Host
+    description: URL for OpenAI-compatible server (LM Studio, vLLM, etc.)
+  openai_compatible_api_key:
+    name: OpenAI-Compatible API Key
+    description: API key for OpenAI-compatible server (optional for some)
+  openai_compatible_model:
+    name: OpenAI-Compatible Model
+    description: Model name on your OpenAI-compatible server
+  guardrails_threshold:
+    name: Safety Guardrails
+    description: Safety threshold 0-100 (higher = stricter, 0 = disabled)
+  max_tokens_per_response:
+    name: Max Tokens Per Response
+    description: Maximum tokens the AI can generate per response
+  requests_per_minute:
+    name: Rate Limit
+    description: Maximum API requests per minute
+network:
+  8000/tcp: Web UI Port

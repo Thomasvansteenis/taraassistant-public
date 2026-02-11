@@ -53,12 +53,13 @@ class EntityIndex:
 class EntityCache:
     """Encrypted cache for Home Assistant entity index."""
 
-    CACHE_DIR = Path("data")
     CACHE_FILE = "entities.enc"
     FETCH_TIMEOUT = 10.0  # seconds
 
     def __init__(self, passphrase: Optional[str] = None):
         self.encryption = EncryptionManager(passphrase)
+        from app.config import is_addon_mode
+        self.CACHE_DIR = Path("/data/app_data") if is_addon_mode() else Path("data")
         self.cache_path = self.CACHE_DIR / self.CACHE_FILE
         self._index: Optional[EntityIndex] = None
 

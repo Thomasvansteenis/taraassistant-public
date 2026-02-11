@@ -10,7 +10,7 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import Optional, List
 
-from app.config import get_settings, is_configured
+from app.config import get_settings, is_configured, is_addon_mode
 from app.memory import get_memory
 from app.usage import get_usage_tracker
 
@@ -20,6 +20,7 @@ from app.setup.routes import router as setup_api_router, page_router as setup_pa
 # Middleware
 from app.middleware.rate_limiter import RateLimiterMiddleware
 from app.middleware.setup_redirect import SetupRedirectMiddleware
+from app.middleware.ingress import IngressMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -72,6 +73,10 @@ app.add_middleware(
 settings = get_settings()
 app.add_middleware(RateLimiterMiddleware, requests_per_minute=settings.requests_per_minute)
 app.add_middleware(SetupRedirectMiddleware)
+
+# Ingress middleware for HA add-on (rewrites paths in HTML responses)
+if is_addon_mode():
+    app.add_middleware(IngressMiddleware)
 
 # Include setup wizard routes
 app.include_router(setup_api_router)

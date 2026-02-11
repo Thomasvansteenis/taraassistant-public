@@ -45,3 +45,8 @@ htmlcov/
 
 # N8N workflow backup (contains tokens)
 HA_Control_*.json
+
+# Add-on build artifacts (copied by build.sh)
+homeassistant-addon/tara-assistant/app/
+homeassistant-addon/tara-assistant/requirements.txt
+homeassistant-addon/tara-assistant/scripts.yaml
