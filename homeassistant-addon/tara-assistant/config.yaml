@@ -1,5 +1,5 @@
 name: Tara Assistant
-version: 1.0.0
+version: 1.0.1
 slug: tara_assistant
 description: AI-powered Home Assistant automation assistant that learns your routines and suggests automations
 url: https://github.com/TaraHome/taraassistant-public
