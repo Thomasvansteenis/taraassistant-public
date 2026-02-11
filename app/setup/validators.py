@@ -217,7 +217,7 @@ class ProviderValidator:
 
                 if not models:
                     # Key is valid but no models available (unlikely)
-                    return True, ["gemini-2.0-flash-exp", "gemini-1.5-pro", "gemini-1.5-flash"], None
+                    return True, ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash"], None
 
                 return True, models, None
 

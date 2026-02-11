@@ -35,7 +35,7 @@ class Settings(BaseSettings):
 
     # Google (Gemini)
     google_api_key: str = Field(default="")
-    google_model: str = Field(default="gemini-2.0-flash-exp")
+    google_model: str = Field(default="gemini-2.5-flash")
 
     # OpenAI-compatible (OpenWebUI, llama.cpp, LM Studio, vLLM, etc.)
     openai_compatible_host: str = Field(default="http://localhost:8080/v1")

@@ -1,5 +1,5 @@
 name: Tara Assistant
-version: 1.0.5
+version: 1.0.6
 slug: tara_assistant
 description: AI-powered Home Assistant automation assistant that learns your routines and suggests automations
 url: https://github.com/TaraHome/taraassistant-public
@@ -36,7 +36,7 @@ options:
   ollama_host: ""
   ollama_model: llama3.1
   google_api_key: ""
-  google_model: gemini-2.0-flash-exp
+  google_model: gemini-2.5-flash
   openai_compatible_host: ""
   openai_compatible_api_key: ""
   openai_compatible_model: ""

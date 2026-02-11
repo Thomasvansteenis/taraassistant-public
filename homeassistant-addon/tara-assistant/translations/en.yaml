@@ -25,7 +25,7 @@ configuration:
     description: Your Google Gemini API key (required when using Google provider)
   google_model:
     name: Google Model
-    description: Google model to use (e.g. gemini-2.0-flash-exp)
+    description: Google model to use (e.g. gemini-2.5-flash)
   openai_compatible_host:
     name: OpenAI-Compatible Host
     description: URL for OpenAI-compatible server (LM Studio, vLLM, etc.)
