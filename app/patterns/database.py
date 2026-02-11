@@ -18,10 +18,11 @@ from app.patterns.models import (
 class PatternDatabase:
     """SQLite database for device usage patterns."""
 
-    DB_DIR = Path("data")
     DB_FILE = "usage_patterns.db"
 
     def __init__(self):
+        from app.config import is_addon_mode
+        self.DB_DIR = Path("/data/app_data") if is_addon_mode() else Path("data")
         self.db_path = self.DB_DIR / self.DB_FILE
         self.DB_DIR.mkdir(parents=True, exist_ok=True)
         self._init_database()

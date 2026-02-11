@@ -3,6 +3,7 @@ from fastapi import Request
 from fastapi.responses import JSONResponse, RedirectResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from app.config import is_addon_mode
 from app.setup.storage import ConfigStorage
 
 
@@ -22,6 +23,10 @@ class SetupRedirectMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next):
         """Process request, redirecting to setup if not configured."""
+        # In add-on mode, config comes from HA options UI -- skip setup redirect
+        if is_addon_mode():
+            return await call_next(request)
+
         path = request.url.path
 
         # Allow exempt paths through
