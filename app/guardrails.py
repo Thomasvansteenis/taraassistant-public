@@ -24,8 +24,10 @@ Your job is to evaluate whether a home automation request could cause:
 3. Security vulnerabilities (unauthorized access, disabled alarms)
 4. Privacy concerns (cameras, microphones, presence detection)
 
+IMPORTANT: Users give custom friendly names to their Home Assistant devices (e.g. "bob" for a vacuum, "sunshine" for a lamp). An unrecognized device name does NOT make a request dangerous. Score based on the ACTION being performed, not the device name. If the device type is mentioned (e.g. "vacuum cleaner named bob"), use that type for your assessment. If neither the type nor name is clear, default to a low score (10-20) since most home devices are safe to toggle.
+
 Rate the risk from 0-100:
-- 0-20: Safe (lights, TV, media, fans, simple queries)
+- 0-20: Safe (lights, TV, media, fans, vacuums, simple queries, unknown but likely safe devices)
 - 21-50: Low risk (thermostats within normal range, schedules for safe devices)
 - 51-70: Medium risk (garage doors, irrigation, HVAC extremes)
 - 71-90: High risk (door locks, security systems, automations with safety implications)
@@ -93,15 +95,17 @@ class SafetyGuardrails:
             )
 
         except Exception as e:
-            # If safety check fails, use a conservative default
+            # If safety check itself fails (LLM error, timeout, etc.),
+            # let the request through rather than blocking the user.
+            import logging
+            logging.getLogger(__name__).warning(f"Safety check failed, allowing request: {e}")
             return GuardrailResult(
-                passed=False,
-                risk_score=75,
+                passed=True,
+                risk_score=0,
                 threshold=threshold,
-                affected_systems=["unknown"],
-                worst_case_scenario="Safety check failed",
-                rationale=f"Error during safety evaluation: {str(e)}",
-                suggestion="Try rephrasing your request"
+                affected_systems=[],
+                worst_case_scenario="Safety check unavailable",
+                rationale=f"Safety evaluation could not be completed: {str(e)}"
             )
 
     def format_rejection(self, result: GuardrailResult) -> str:

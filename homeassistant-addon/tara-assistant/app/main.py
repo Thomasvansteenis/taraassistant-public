@@ -1446,11 +1446,16 @@ async def home():
             showTyping();
 
             try {{
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 120000);
+
                 const res = await fetch('/api/chat', {{
                     method: 'POST',
                     headers: {{'Content-Type': 'application/json'}},
-                    body: JSON.stringify({{message: text}})
+                    body: JSON.stringify({{message: text}}),
+                    signal: controller.signal
                 }});
+                clearTimeout(timeoutId);
 
                 hideTyping();
                 const data = await res.json();
@@ -1470,7 +1475,11 @@ async def home():
                 updateTokenSummary();
             }} catch (e) {{
                 hideTyping();
-                addMessage('Connection error.', 'error');
+                if (e.name === 'AbortError') {{
+                    addMessage('Request timed out. The AI or Home Assistant took too long to respond. Please try again.', 'error');
+                }} else {{
+                    addMessage('Connection error. Check that the add-on is running and your network is working.', 'error');
+                }}
             }}
 
             sendBtn.disabled = false;
