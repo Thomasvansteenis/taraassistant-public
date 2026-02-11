@@ -36,14 +36,24 @@ export MAX_TOKENS_PER_RESPONSE=$(jq -r '.max_tokens_per_response // 4096' "${OPT
 export REQUESTS_PER_MINUTE=$(jq -r '.requests_per_minute // 20' "${OPTIONS}")
 
 # ------------------------------------------------------------------
-# Auto-discover Home Assistant via Supervisor API
+# Home Assistant connection
 # ------------------------------------------------------------------
-export HA_URL="http://supervisor/core"
-export HA_TOKEN="${SUPERVISOR_TOKEN:-}"
+HA_LONG_LIVED_TOKEN=$(jq -r '.ha_token // ""' "${OPTIONS}")
 
-if [ -z "${HA_TOKEN}" ]; then
-    log_error "SUPERVISOR_TOKEN is not set — Home Assistant API calls will fail."
-    log_error "This is expected when init: false is used. The app will start but HA control won't work."
+if [ -n "${SUPERVISOR_TOKEN:-}" ]; then
+    # Running with Supervisor init — use the injected token
+    export HA_URL="http://supervisor/core"
+    export HA_TOKEN="${SUPERVISOR_TOKEN}"
+    log_info "Using SUPERVISOR_TOKEN for Home Assistant API"
+elif [ -n "${HA_LONG_LIVED_TOKEN}" ]; then
+    # No Supervisor token — use user-provided long-lived access token
+    export HA_URL="http://homeassistant:8123"
+    export HA_TOKEN="${HA_LONG_LIVED_TOKEN}"
+    log_info "Using long-lived access token for Home Assistant API"
+else
+    export HA_URL="http://homeassistant:8123"
+    export HA_TOKEN=""
+    log_error "No HA token available. Set a Long-Lived Access Token in the add-on config."
 fi
 
 log_info "AI Provider: ${AI_PROVIDER}"
